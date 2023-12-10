@@ -4,7 +4,7 @@
   "description": "실시간 전투 게임 ",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start" : "nodemon app"
   },
   "author": "20j.code@gmail.com",
   "license": "MIT",
