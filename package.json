@@ -4,7 +4,7 @@
   "description": "실시간 전투 게임 ",
   "main": "app.js",
   "scripts": {
-    "start" : "nodemon app"
+    "start": "nodemon app"
   },
   "author": "20j.code@gmail.com",
   "license": "MIT",
@@ -15,7 +15,8 @@
     "express-session": "^1.17.3",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
-    "nunjucks": "^3.2.4"
+    "nunjucks": "^3.2.4",
+    "socket.io": "^4.7.2"
   },
   "devDependencies": {
     "nodemon": "^3.0.2"
