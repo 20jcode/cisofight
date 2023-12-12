@@ -12,7 +12,7 @@ let ctx = canvas.getContext("2d"); //2d로 가져옴
 let life = 10;
 let pos_X = 0;
 let pos_Y = 0;
-let speed = 100;
+let speed = 1;
 ctx.fillStyle = "red";
 ctx.fillRect(pos_X,pos_Y,50,50); //네모를 채운다. 위치를 지정한다.
 
@@ -83,6 +83,7 @@ function keyUpTest(e){ //키를 때면 멈추도록
 }
 
 function renderMain(){
+    //기존의 도형을 전부 제거하고
     ctx.clearRect(0,0,canvas.width,canvas.height);
     if(upKey){ //위로 이동한다
         pos_Y += speed;
@@ -101,7 +102,7 @@ function renderMain(){
         ctx.translate(pos_X,pos_Y);
     }
     ctx.fillStyle = "red";
-    ctx.fillRect();//위치가 안나오는 문제가 생긴다.
+    ctx.fillRect(pos_X,pos_Y,50,50);//이동된 위치에서 새로 그리도록.
 }
 
 setInterval(renderMain,10);

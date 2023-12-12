@@ -1,0 +1,20 @@
+{
+  "development": {
+    "username": "root",
+    "password": "0000",
+    "database": "springStudy",
+    "host": "localhost"
+  },
+  "test": {
+    "username": "root",
+    "password": "0000",
+    "database": "nodebird",
+    "host": "localhost"
+  },
+  "production": {
+    "username": "root",
+    "password": "0000",
+    "database": "nodebird",
+    "host": "localhost"
+  }
+}
