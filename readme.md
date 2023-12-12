@@ -81,3 +81,10 @@ js파일 분리를 하니 html 렌더링이 제대로 안되는 문제가 또 �
 문제가 참 많다.
 
 
+---
+
+# 12월 12일
+
+routes/index.js 에서 '/fight'로 오는 get 요청에 대해서 fightController로 보냄
+
+FightRoom 네임스페이스 -- 내부에 각각 sess 이라는 룸이 존재.

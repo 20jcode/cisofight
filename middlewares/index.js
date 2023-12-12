@@ -1,5 +1,5 @@
 
-//routes/page.js 에서 사용됨. 로그인 되어있는지 확인
+//routes/index.js 에서 사용됨. 로그인 되어있는지 확인
 exports.isLoggedIn = (req,res,next) => {
     if (req.isAuthenticated()){
         next();

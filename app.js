@@ -8,7 +8,7 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-const pageRouter = require('./routes/page');
+const indexRouter = require('./routes/index');
 
 const app = express();
 app.set('port',process.env.PORT || 8001);
@@ -17,7 +17,7 @@ nunjucks.configure('views',{
     express:app,
     watch:true,
 });
-/*
+
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname,'public')));
 app.use(express.json());
@@ -32,8 +32,8 @@ app.use(session({
         secure: false,
     }
 }));
-*/
-app.use('/',pageRouter); //기본 연결 주소. 초기 접속 화면
+
+app.use('/',indexRouter); //기본 연결 주소. 초기 접속 화면
 
 app.use((req,res,next)=>{
     const error = new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
