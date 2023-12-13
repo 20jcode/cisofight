@@ -3,109 +3,41 @@
 {% block content %}
 
 <canvas id="gameCanvas" width="500" height="500"></canvas>
+
 <script>
-    let canvas = document.getElementById("gameCanvas");
-let ctx = canvas.getContext("2d"); //2d로 가져옴
+    const { getCiso } = require('../models/game/ciso');
+    let player = getCiso;
+    let isStart = false;
+    let isEnd = false;
+    //플레이어 소켓 연결
 
-//유닛 객체에 대한 속성 정의
 
-let life = 10;
-let pos_X = 0;
-let pos_Y = 0;
-let speed = 1;
-ctx.fillStyle = "red";
-ctx.fillRect(pos_X,pos_Y,50,50); //네모를 채운다. 위치를 지정한다.
+    //사용자 키 입력
+    document.addEventListener("keydown",player.keyDownEvent,false);
+    document.addEventListener("keyup",player.keyUpEvent,false);
 
-//키 입력 상태 정의
-let upKey = false;
-let downKey = false;
-let leftKey = false;
-let rightKey = false;
-let qKey = false; //해당 키를 눌렸는가에 대해서, 쿨타임이 있으므로 숫자로?
-let wKey = false;
-let eKey = false;
-let rKey = false;
-
-//사용자 키 입력에 따른 socket 통신
-//key를 눌렸을 경우 해당 socket이벤트가 발생하도록 된다?
-document.addEventListener("keydown", keyDownTest,false);
-document.addEventListener("keyup",keyUpTest,false);
-
-function keyDownTest(e){ //키를 눌렸을 경우 움직이도록
-    switch (e.key){
-        case 'ArrowUp' :
-            console.log('up');
-            upKey = true;
-            break;
-
-        case 'ArrowDown' :
-            downKey = true;
-            break;
-
-        case 'ArrowLeft' :
-            leftKey = true;
-            break;
-
-        case 'ArrowRight' :
-            rightKey = true;
-            break;
-
-        default :
-            break; //다른 키 입력한 경우 처리
-            //스킬에 대한 키는 아직 세팅안함
+    function renderClient(){
 
     }
-}
 
-function keyUpTest(e){ //키를 때면 멈추도록
-    switch (e.key){
-        case 'ArrowUp' :
-            upKey = false;
-            break;
 
-        case 'ArrowDown' :
-            downKey = false;
-            break;
+    //시작부분
 
-        case 'ArrowLeft' :
-            leftKey = false;
-            break;
+    //소켓에서 isStart를 받는다.
 
-        case 'ArrowRight' :
-            rightKey = false;
-            break;
-
-        default :
-            break; //다른 키 입력한 경우 처리
-            //스킬에 대한 키는 아직 세팅안함
+    if (isStart){
+        //계속 렌더링한다.
+        while(!isEnd){
+            renderClient();
+        }
+        //키입력을 받으면 서버로 emit한다.
+        //서버에서 상대방 정보를 받아온다.
+        //승패계산을 한다.
+        //승패가 결정되면 서버에 emit하고 종료한다.
 
     }
-}
 
-function renderMain(){
-    //기존의 도형을 전부 제거하고
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    if(upKey){ //위로 이동한다
-        pos_Y += speed;
-        ctx.translate(pos_X,pos_Y);
-    }
-    if(downKey){
-        pos_Y -= speed;
-        ctx.translate(pos_X,pos_Y);
-    }
-    if(leftKey){
-        pos_X -= speed;
-        ctx.translate(pos_X,pos_Y);
-    }
-    if(rightKey){
-        pos_X += speed;
-        ctx.translate(pos_X,pos_Y);
-    }
-    ctx.fillStyle = "red";
-    ctx.fillRect(pos_X,pos_Y,50,50);//이동된 위치에서 새로 그리도록.
-}
-
-setInterval(renderMain,10);
 
 </script>
+
 {% endblock %}

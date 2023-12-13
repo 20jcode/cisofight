@@ -33,7 +33,6 @@ document.addEventListener("keyup",keyUpTest,false);
 function keyDownTest(e){ //키를 눌렸을 경우 움직이도록
     switch (e.key){
         case 'ArrowUp' :
-            console.log('up');
             upKey = true;
             break;
 
