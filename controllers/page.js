@@ -14,8 +14,9 @@ exports.renderMain = async (req, res, next) => {
 };
 
 exports.renderProfile = async(req,res,next) => {
+    res.render('profile', {title: '내 정보 - NodeBird'});
 
-}
+};
 
 exports.renderJoin = async (req,res,next) => {
     res.render('join', { title : '회원가입'});
