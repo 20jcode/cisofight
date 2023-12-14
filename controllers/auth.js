@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const passport = require('passport');
-const db = require(process.cwd() + '/models');
+const db = require(process.cwd() + '/rdb/pools');
 
 exports.join = async (req, res, next) => {
     const {email, nick, password} = req.body;

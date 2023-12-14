@@ -1,7 +1,7 @@
 //사용자 게임화면 렌더링을 위한 js
 //const key = require('keySetting');
 //const unit = require('unit');
-
+//폐기됨
 
 let canvas = document.getElementById("gameCanvas");
 let ctx = canvas.getContext("2d"); //2d로 가져옴

@@ -1,3 +1,5 @@
+//폐기됨
+
 const ciso = { //플레이어블 객체 정의
     id : "",
     position_X : 0,

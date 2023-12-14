@@ -5,38 +5,113 @@
 <canvas id="gameCanvas" width="500" height="500"></canvas>
 
 <script>
-    const { getCiso } = require('../models/game/ciso');
-    let player = getCiso;
+
+    let player = {
+        id : "",
+        pos_X : 0,
+        pos_Y : 0,
+        speed : 1,
+        isMe : true,
+        upKey : false,
+        downKey : false,
+        leftKey : false,
+        rightKey : false,
+
+    };
     let isStart = false;
     let isEnd = false;
-    //플레이어 소켓 연결
+    let inter = 0;
+    let movepoint = 100;
+    let canvas = document.getElementById("gameCanvas");
+    let ctx = canvas.getContext("2d");
+    ctx.fillStyle = "red";
+    ctx.fillRect(player.pos_X,player.pos_Y,50,50);
 
+    function keyDownEvent(e){ //키를 눌렸을 경우 움직이도록
+    switch (e.key){
+        case 'ArrowUp' :
+            player.upKey = true;
+            break;
 
-    //사용자 키 입력
-    document.addEventListener("keydown",player.keyDownEvent,false);
-    document.addEventListener("keyup",player.keyUpEvent,false);
+        case 'ArrowDown' :
+            player.downKey = true;
+            break;
 
-    function renderClient(){
-        player.getLocation();
-        enemy.getLocation();
+        case 'ArrowLeft' :
+            player.leftKey = true;
+            break;
+
+        case 'ArrowRight' :
+            player.rightKey = true;
+            break;
+
+        default :
+            break; //다른 키 입력한 경우 처리
+            //스킬에 대한 키는 아직 세팅안함
 
     }
+}
 
+function keyUpEvent(e){ //키를 때면 멈추도록
+    switch (e.key){
+        case 'ArrowUp' :
+            player.upKey = false;
+            break;
 
-    //시작부분
+        case 'ArrowDown' :
+            player.downKey = false;
+            break;
 
-    //소켓에서 isStart를 받는다.
+        case 'ArrowLeft' :
+            player.leftKey = false;
+            break;
 
-    if (isStart){
-        //계속 렌더링한다.
-        while(!isEnd){
-            renderClient();
+        case 'ArrowRight' :
+            player.rightKey = false;
+            break;
+
+        default :
+            break; //다른 키 입력한 경우 처리
+            //스킬에 대한 키는 아직 세팅안함
+
+    }
+}
+
+    //사용자 키 입력
+    document.addEventListener("keydown",keyDownEvent,false);
+    document.addEventListener("keyup",keyUpEvent,false);
+
+    function renderClient(){
+        if(player.upKey){ //위로 이동한다
+        player.pos_Y += speed;
+        ctx.translate(player.pos_X,player.pos_Y);
         }
-        //키입력을 받으면 서버로 emit한다.
-        //서버에서 상대방 정보를 받아온다.
-        //승패계산을 한다.
-        //승패가 결정되면 서버에 emit하고 종료한다.
+        if(player.downKey){
+            player.pos_Y -= speed;
+            ctx.translate(player.pos_X,player.pos_Y);
+        }
+        if(player.leftKey){
+            player.pos_X -= speed;
+            ctx.translate(player.pos_X,player.pos_Y);
+        }
+        if(player.rightKey){
+            player.pos_X += speed;
+            ctx.translate(player.pos_X,player.pos_Y);
+        }
 
+        if(player.pos_X>100){
+            isEnd = true;
+        }
+        if(player.pos_Y>100){
+            isEnd = true;
+        }
+        if(isEnd){
+            clearInterval(inter);
+        }
+    }
+
+    if(isStart){
+        inter = setInterval(renderClient,1);
     }
 
 
