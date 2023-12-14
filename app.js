@@ -6,9 +6,11 @@ const session = require('express-session');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 const webSocket = require('./socket');
+const passportConfig = require('./passport');
+const passport = require('passport');
 
 dotenv.config();
-
+passportConfig();
 const indexRouter = require('./routes/index');
 
 const app = express();
@@ -33,7 +35,7 @@ const sessionMiddleware = session({
         secure: false,
     }
 });
-
+app.use(passport.initialize());
 app.use(sessionMiddleware);
 
 app.use('/',indexRouter); //기본 연결 주소. 초기 접속 화면

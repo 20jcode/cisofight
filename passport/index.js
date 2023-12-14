@@ -1,6 +1,6 @@
 const passport = require('passport');
 const local = require('./localStrategy');
-const db = require(process.cwd() + '/rdb');
+const db = require(process.cwd() + '/rdb/pools');
 
 module.exports = () => {
     passport.serializeUser((user, done) => {

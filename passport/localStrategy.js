@@ -1,7 +1,7 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
-const db = require(process.cwd() + '/rdb');
+const db = require(process.cwd() + '/rdb/pools');
 
 module.exports = () => {
     passport.use(new LocalStrategy({
